@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
+
+<body>
+
+  <h2 th:text="#{crear}">  veterinario</h2>
+  <form th:object="${owner}" class="form-horizontal" id="add-owner-form" method="post">
+    <div class="form-group has-feedback">
+      <input
+        th:replace="~{fragments/inputField :: input (#{FirstName}, 'firstName', 'text')}" />
+      <input
+        th:replace="~{fragments/inputField :: input (#{Lastname}, 'lastName', 'text')}" />
+      
+      <input
+        th:replace="~{fragments/inputField :: input (#{Telephone}, 'telephone', 'text')}" />
+           <input
+        th:replace="~{fragments/inputField :: input (#{horario}, 'horario', 'text')}" />
+           <input
+        th:replace="~{fragments/inputField :: input (#{horario}, 'hora_fin', 'text')}" />
+           <label style="margin-left: 80px" > 	Especialidades</label>
+           <select style="margin-left: 25px" id="specialties" name="specialties2">
+   <option value="NONE">--- Select ---</option> 
+   <option value="dentistry">dentistry</option>
+   <option value="radiology">radiology</option>
+   <option value="surgery">surgery</option>
+</select> 
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button 
+          th:with="text=${owner['new']} ? #{Add} : #{Update2}"
+          class="btn btn-default" type="submit" th:text="${text}" >Add
+          veterinario</button>
+      </div>
+    </div>
+  </form>
+</body>
+</html>
