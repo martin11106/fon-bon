@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS pets (
   FOREIGN KEY (type_id) REFERENCES types(id)
 ) engine=InnoDB;
 
-CREATE TABLE IF NOT EXISTS medecines (
+CREATE TABLE IF NOT EXISTS medicines (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30),
   active_ingredients VARCHAR(30),
