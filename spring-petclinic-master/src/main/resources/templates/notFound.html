@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'error')}">
+
+  <body>
+    <img src="../static/resources/images/pika.gif" th:src="@{/resources/images/pika.gif}"/>
+    <h2 th:text="#{notFoundPage}">This element doesn't exist</h2>
+  </body>
+
+</html>

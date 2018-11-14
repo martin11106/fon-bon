@@ -15,8 +15,13 @@
  */
 package org.springframework.samples.petclinic.system;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Controller used to showcase what happens when an exception is thrown
@@ -26,12 +31,24 @@ import org.springframework.web.bind.annotation.GetMapping;
  * Also see how a view that resolves to "error" has been added ("error.html").
  */
 @Controller
-class CrashController {
+class CrashController implements ErrorController{
+    @RequestMapping("/error")
+    public String handleError(HttpServletRequest request) {
+        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
-    @GetMapping("/oups")
-    public String triggerException() {
-        throw new RuntimeException("Expected: controller used to showcase what "
-                + "happens when an exception is thrown");
+        if (status != null) {
+            Integer statusCode = Integer.valueOf(status.toString());
+
+            if(statusCode == HttpStatus.NOT_FOUND.value()) {
+                return "notFound";
+            }
+        }
+        return "error";
     }
+    @Override
+    public String getErrorPath() {
+        return "/error";
+    }
+
 
 }
