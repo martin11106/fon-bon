@@ -5,7 +5,8 @@
 
 <body>
 
-  <h2 th:text="#{pets}">Pets</h2>
+  <h2 th:text="#{petReport}">Pets</h2>
+  <h3 th:text="#{pets}+${': ' + petReport.cantidad}"></h3>
 
   <table id="vets" class="table table-striped">
     <thead>
@@ -17,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr th:each="pet : ${pets.petList}">
+      <tr th:each="pet : ${petReport.pets}">
         <td th:text="${pet.name}"></td>
         <td th:text="${pet.type}"></td>
         <td th:text="${pet.birthDate}"></td>

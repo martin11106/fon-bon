@@ -5,7 +5,9 @@
 
 <body>
 
-  <h2 th:text="#{veterinarians}">Veterinarians</h2>
+  <h2 th:text="#{vetReport}">Veterinarians</h2>
+  <h3 th:text="#{veterinarians}+${': ' + vetReport.cantidad}"></h3>
+  
 
   <table id="vets" class="table table-striped">
     <thead>
@@ -18,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr th:each="vet : ${vets.vetList}">
+      <tr th:each="vet : ${vetReport.vets}">
         <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
         <td  th:text="${vet.specialties2}"></td> 
         <td  th:text="${vet.telephone}"></td>    

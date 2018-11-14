@@ -59,4 +59,9 @@ public interface VetRepository extends Repository<Vet, Integer> {
     void save(Vet vet);
 
     void delete(Vet vet);
+    
+    @Query("SELECT COUNT(id) FROM Vet")
+    @Transactional(readOnly = true)
+    int numero();
+    
 }
