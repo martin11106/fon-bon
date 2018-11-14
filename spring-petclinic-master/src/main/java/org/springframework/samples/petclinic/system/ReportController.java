@@ -6,6 +6,8 @@
 package org.springframework.samples.petclinic.system;
 
 import java.util.Map;
+import org.springframework.samples.petclinic.medicine.MedicineReport;
+import org.springframework.samples.petclinic.medicine.MedicineRepository;
 import org.springframework.samples.petclinic.owner.PetRepository;
 import org.springframework.samples.petclinic.vet.VetRepository;
 import org.springframework.stereotype.Controller;
@@ -21,11 +23,13 @@ import org.springframework.samples.petclinic.vet.VetReport;
 public class ReportController {
     private final VetRepository vets;
     private final PetRepository pets;
+    private final MedicineRepository medicines;
 
 
-    public ReportController(VetRepository vets, PetRepository pets) {
+    public ReportController(VetRepository vets, PetRepository pets, MedicineRepository medicines) {
         this.vets = vets;
         this.pets = pets;
+        this.medicines = medicines; 
     }
     
     @GetMapping("reports.html")
@@ -35,8 +39,6 @@ public class ReportController {
     
     @GetMapping("/vetReport.html")
     public String showVetList(Map<String, Object> model) {
-        // Here we are returning an object of type 'Vets' rather than a collection of Vet
-        // objects so it is simpler for Object-Xml mapping
         VetReport vetReport = new VetReport(this.vets.findAll(), this.vets.numero());
         model.put("vetReport", vetReport);
         return "vets/vetReport";
@@ -44,10 +46,15 @@ public class ReportController {
     
     @GetMapping("/petReport.html")
     public String showPetList(Map<String, Object> model) {
-        // Here we are returning an object of type 'Pets' rather than a collection of Pet
-        // objects so it is simpler for Object-Xml mapping
         PetReport petReport = new PetReport(this.pets.findAll(), this.pets.numero());
         model.put("petReport", petReport);
         return "pets/petReport";
+    }
+    
+    @GetMapping("/medicineReport.html")
+    public String showMedicineList(Map<String, Object> model) {
+        MedicineReport medicineReport = new MedicineReport(this.medicines.findAll(), this.medicines.numero());
+        model.put("medicineReport", medicineReport);
+        return "medicines/medicineReport";
     }
 }

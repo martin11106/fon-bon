@@ -59,9 +59,14 @@
                       <span>Veterinarians</span>
                   </li>
                   
+                  <li th:replace="::menuItem ('/medicines/find','medicines','medicines','baby-formula',#{medicines})">
+                      <span class="glyphicon glyphicon-bullet-baby-formula" aria-hidden="true"></span>
+                      <span>Medicins</span>
+                  </li>
+                  
                   <li th:replace="::menuItem ('/reports.html','reports','reports','list-alt',#{reports})">
                       <span class="glyphicon glyphicon-bullet-list-alt" aria-hidden="true"></span>
-                      <span>Medicins</span>
+                      <span>Reports</span>
                   </li>
   
               </ul>

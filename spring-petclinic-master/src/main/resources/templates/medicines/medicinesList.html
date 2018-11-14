@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'medicines')}">
+
+  <body>
+
+    <h2 th:text="#{medicines}">Medicine</h2>
+
+    <table id="vets" class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 150px;" th:text="#{name}">Name</th>
+            <th style="width: 200px;" th:text="#{activeIngredients}">Active ingredients</th>
+            <th style="width: 120px" th:text="#{presentation}">Presentation</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="medicine : ${selections}">
+              <td>
+                  <a th:href="@{/medicines/__${medicine.id}__}" th:text="${medicine.name}"/></a>
+              </td>
+              <td th:text="${medicine.activeIngedients}"/>
+              <td th:text="${medicine.presentation}"/>
+          </tr>
+        </tbody>
+    </table>
+
+  </body>
+</html>
