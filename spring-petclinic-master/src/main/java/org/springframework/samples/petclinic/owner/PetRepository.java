@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -32,6 +33,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface PetRepository extends Repository<Pet, Integer> {
 
+    /**
+     * Retrieve all <code>Pet</code>s from the data store.
+     *
+     * @return a <code>Collection</code> of <code>Pet</code>s
+     */
+    @Transactional(readOnly = true)
+    Collection<Pet> findAll();
+    
     /**
      * Retrieve all {@link PetType}s from the data store.
      * @return a Collection of {@link PetType}s.

@@ -54,14 +54,14 @@
                       <span th:text="#{FindOwnners}">Find owners</span>
                   </li>
   
-                  <li th:replace="::menuItem ('/vets2.html','vets','veterinarians','th-list',#{veterinarians})">
-                      <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                      <span th:text="#{veterinarians}">Veterinarians</span>
+                  <li th:replace="::menuItem ('/vets.html','vets','veterinarians','leaf',#{veterinarians})">
+                      <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+                      <span>Veterinarians</span>
                   </li>
-  
-                  <li th:replace="::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','warning-sign','Error')">
-                      <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-                      <span >Error</span>
+                  
+                  <li th:replace="::menuItem ('/reports.html','reports','reports','list-alt',#{reports})">
+                      <span class="glyphicon glyphicon-bullet-list-alt" aria-hidden="true"></span>
+                      <span>Medicins</span>
                   </li>
   
               </ul>
@@ -75,13 +75,6 @@
 
         <br/>
         <br/>
-        <div class="container">
-          <div class="row">
-            <div class="col-12 text-center">
-              <img src="../static/resources/images/spring-pivotal-logo.png" th:src="@{/resources/images/spring-pivotal-logo.png}"
-                alt="Sponsored by Pivotal"/></div>
-          </div>
-        </div>
       </div>
   </div>
 
