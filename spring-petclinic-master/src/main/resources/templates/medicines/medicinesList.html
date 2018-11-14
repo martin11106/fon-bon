@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'medicines')}">
 
   <body>
 
@@ -19,8 +19,8 @@
               <td>
                   <a th:href="@{/medicines/__${medicine.id}__}" th:text="${medicine.name}"/></a>
               </td>
-              <td th:text="${medicine.activeIngredients}"/>
-              <td th:text="${owner.presentation}"/>
+              <td th:text="${medicine.activeIngedients}"/>
+              <td th:text="${medicine.presentation}"/>
           </tr>
         </tbody>
     </table>

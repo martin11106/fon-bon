@@ -17,11 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface MedicineRepository extends Repository<Medicine, Integer> {
     
-    @Query("SELECT DISTINCT medicine FROM Medicine medicine left join fetch medicine WHERE medicine.name LIKE :name%")
+    @Query("SELECT DISTINCT medicine FROM Medicine medicine WHERE medicine.name LIKE :name%")
     @Transactional(readOnly = true)
     Collection<Medicine> findByName(@Param("name") String name);
     
-    @Query("SELECT medicine FROM Medicine medicine left join fetch medicine WHERE medicine.id =:id")
+    @Query("SELECT medicine FROM Medicine medicine WHERE medicine.id =:id")
     @Transactional(readOnly = true)
     Medicine findById(@Param("id") Integer id);
     

@@ -49,19 +49,24 @@
                       <span th:text="#{home}">Home</span>
                   </li>
   
-                  <li th:replace="::menuItem ('/owners/find','owners','find owners','search',#{FindOwnners})">
+                  <li th:replace="::menuItem ('/owners/find','owners','find owners','search',#{findOwner})">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                      <span th:text="#{FindOwnners}">Find owners</span>
+                      <span th:text="#{findOwners}">Find owners</span>
                   </li>
   
-                  <li th:replace="::menuItem ('/vets2.html','vets','veterinarians','th-list',#{veterinarians})">
+                  <li th:replace="::menuItem ('/vets.html','vets','veterinarians','th-list',#{veterinarians})">
                       <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                       <span th:text="#{veterinarians}">Veterinarians</span>
+                  </li>
+                  
+                  <li th:replace="::menuItem ('/medicines/find','medicines','medicines','th-list',#{medicines})">
+                      <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                      <span th:text="#{medicines}">Medicines</span>
                   </li>
   
                   <li th:replace="::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','warning-sign','Error')">
                       <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-                      <span >Error</span>
+                      <span>Error</span>
                   </li>
   
               </ul>

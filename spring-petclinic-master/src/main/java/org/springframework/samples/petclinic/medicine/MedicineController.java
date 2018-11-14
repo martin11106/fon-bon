@@ -50,7 +50,7 @@ class MedicineController {
            return VIEWS_MEDICINES_CREATE_OR_UPDATE_FORM;
         }else{
             this.medicines.save(medicine);
-            return "redicrect:/medicines/" + medicine.getId();
+            return "redirect:/medicines/" + medicine.getId();
         }
     }
     
@@ -74,7 +74,7 @@ class MedicineController {
             medicine = results.iterator().next();
             return "redirect:/medicines/" + medicine.getId();
         }else{
-            model.put("selectiones", results);
+            model.put("selections", results);
             return "medicines/medicinesList";
         }
     }
@@ -97,7 +97,7 @@ class MedicineController {
         }
     }
     
-    @GetMapping("medicines/{medicineId}")
+    @GetMapping("/medicines/{medicineId}")
     public ModelAndView showMedicine(@PathVariable("medicineId") int medicineId){
         ModelAndView mav = new ModelAndView("medicines/medicineDetails");
         mav.addObject(this.medicines.findById(medicineId));

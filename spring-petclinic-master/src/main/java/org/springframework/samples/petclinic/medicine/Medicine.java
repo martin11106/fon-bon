@@ -30,32 +30,20 @@ import org.springframework.samples.petclinic.model.NamedEntity;
 @Table(name = "medicines")
 public class Medicine extends NamedEntity {
 
-    @Column(name = "name")
-    @NotEmpty
-    private String name;
-
     @Column(name = "active_ingredients")
     @NotEmpty
-    private String activeIngedients;
+    private String activeIngredients;
     
     @Column(name = "presentation")
     @NotEmpty
     private String presentation;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getActiveIngedients() {
-        return activeIngedients;
+        return activeIngredients;
     }
 
     public void setActiveIngedients(String active_ingedients) {
-        this.activeIngedients = active_ingedients;
+        this.activeIngredients = active_ingedients;
     }
 
     public String getPresentation() {
