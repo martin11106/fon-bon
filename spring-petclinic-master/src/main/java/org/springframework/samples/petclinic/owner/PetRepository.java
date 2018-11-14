@@ -38,6 +38,7 @@ public interface PetRepository extends Repository<Pet, Integer> {
      *
      * @return a <code>Collection</code> of <code>Pet</code>s
      */
+    @Query("SELECT pet FROM Pet pet ORDER BY pet.name")
     @Transactional(readOnly = true)
     Collection<Pet> findAll();
     

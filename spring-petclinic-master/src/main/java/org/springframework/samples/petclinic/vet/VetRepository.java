@@ -37,27 +37,26 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface VetRepository extends Repository<Vet, Integer> {
     
-
-    @Transactional(readOnly = true)
-    Vet findById(Integer id);
-    
-   
-    
-     @Query("SELECT vet FROM Vet vet  WHERE vet.lastName LIKE :lastName%")
-    @Transactional(readOnly = true)
-    Collection<Vet> findByLastName(@Param("lastName") String lastName);
     /**
      * Retrieve all <code>Vet</code>s from the data store.
      *
      * @return a <code>Collection</code> of <code>Vet</code>s
      */
+    @Query("SELECT vet FROM Vet vet ORDER BY vet.firstName")
+    @Transactional(readOnly = true)
+    Collection<Vet> findAll();
+    
     
     @Transactional(readOnly = true)
-    @Cacheable("vets")
-    Collection<Vet> findAll() throws DataAccessException;
+    Vet findById(Integer id);
+    
+
+    @Query("SELECT vet FROM Vet vet  WHERE vet.lastName LIKE :lastName%")
+    @Transactional(readOnly = true)
+    Collection<Vet> findByLastName(@Param("lastName") String lastName);
 
     
-       void save(Vet vet);
-       
-       void delete(Vet vet);
+    void save(Vet vet);
+
+    void delete(Vet vet);
 }
