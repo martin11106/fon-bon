@@ -38,11 +38,11 @@ public class Medicine extends NamedEntity {
     @NotEmpty
     private String presentation;
 
-    public String getActiveIngedients() {
+    public String getActiveIngredients() {
         return activeIngredients;
     }
 
-    public void setActiveIngedients(String active_ingedients) {
+    public void setActiveIngredients(String active_ingedients) {
         this.activeIngredients = active_ingedients;
     }
 
