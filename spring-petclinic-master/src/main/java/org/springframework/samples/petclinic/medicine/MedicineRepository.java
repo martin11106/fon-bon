@@ -35,4 +35,6 @@ public interface MedicineRepository extends Repository<Medicine, Integer> {
     @Transactional(readOnly = true)
     Collection<Medicine> findAll();
     
+    void delete(Medicine medicine);
+    
 }

@@ -47,7 +47,7 @@ class VetController {
     @GetMapping("/vets/new")
     public String initCreationForm(Map<String, Object> model) {
     Vet vet=new Vet();
-        model.put("owner", vet);//duda
+        model.put("vet", vet);//duda
         return "Vets/createOrUpdatevetsForm";
     } 
     @PostMapping("/vets/new")
@@ -83,7 +83,8 @@ class VetController {
             return "vets/vetList";
         }
     }
-     @GetMapping("/vets2.html")
+    
+    @GetMapping("/vets2.html")
     public String initFindForm(Map<String, Object> model) {
         model.put("vets", new Vet());
         return "redirect:/vets.html?";
@@ -97,19 +98,22 @@ class VetController {
         vets.getVetList().addAll(this.vets.findAll());
         return vets;
     }
-   @GetMapping("/vets/{vetId}")
+    
+    @GetMapping("/vets/{vetId}")
     public ModelAndView showOwner(@PathVariable("vetId") int vetId) {
         ModelAndView mav = new ModelAndView("vets/vetsDetails");
         mav.addObject(this.vets.findById(vetId));
         return mav;
     }
+    
     @GetMapping("/vets/{vetId}/edit")
     public String initUpdateOwnerForm(@PathVariable("vetId") int vetId, ModelMap model) {
-             Vet vet = this.vets.findById(vetId);
-        model.put("owner", vet);
+        Vet vet = this.vets.findById(vetId);
+        model.put("vet", vet);
         return "Vets/createOrUpdatevetsForm";
     }
-       @PostMapping("/vets/{vetId}/edit")
+    
+    @PostMapping("/vets/{vetId}/edit")
     public String processUpdateOwnerForm(@Valid Vet vet, BindingResult result, @PathVariable("vetId") int vetId) {
         if (result.hasErrors()) {
             return "Vets/createOrUpdatevetsForm";

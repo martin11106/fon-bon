@@ -86,6 +86,13 @@ class MedicineController {
         return VIEWS_MEDICINES_CREATE_OR_UPDATE_FORM;
     }
     
+    @GetMapping("/medicines/{medicineId}/delete")
+    public String initDeleteMedicineForm(@PathVariable("medicineId") int medicineId, Model model){
+        Medicine medicine = this.medicines.findById(medicineId);
+        this.medicines.delete(medicine);
+        return "redirect:/medicines";
+    }
+    
     @PostMapping("/medicines/{medicineId}/edit")
     public String processUpdateMedicineForm(@Valid Medicine medicine, BindingResult result, @PathVariable("medicineId") int medicineId){
         if (result.hasErrors()) {

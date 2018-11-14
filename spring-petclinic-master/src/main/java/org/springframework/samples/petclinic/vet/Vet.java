@@ -49,11 +49,13 @@ import org.springframework.samples.petclinic.model.Person;
 @Entity
 @Table(name = "vets")
 public class Vet extends Person {
-     @Column(name = "horario")
-      @NotEmpty
+    
+    @Column(name = "horario")
+    @NotEmpty
     private String horario;
-          @Column(name = "hora_fin")
-      @NotEmpty
+          
+    @Column(name = "hora_fin")
+    @NotEmpty
     private String hora_fin;
 
     public String getHora_fin() {
@@ -64,7 +66,7 @@ public class Vet extends Person {
         this.hora_fin = hora_fin;
     }
     
-     @Column(name = "specialties")
+    @Column(name = "specialties")
     @NotEmpty
     private String specialties2;
 
@@ -84,7 +86,7 @@ public class Vet extends Person {
         this.specialties2 = specialties2;
     }
      
-   @Column(name = "telephone")
+    @Column(name = "telephone")
     @NotEmpty
     @Digits(fraction = 0, integer = 10)
     private String telephone;
