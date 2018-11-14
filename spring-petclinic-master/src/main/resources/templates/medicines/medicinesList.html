@@ -12,6 +12,7 @@
             <th style="width: 150px;" th:text="#{name}">Name</th>
             <th style="width: 200px;" th:text="#{activeIngredients}">Active ingredients</th>
             <th style="width: 120px" th:text="#{presentation}">Presentation</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +22,10 @@
               </td>
               <td th:text="${medicine.activeIngredients}"/>
               <td th:text="${medicine.presentation}"/>
+              <td>
+                <a th:href="@{/medicines/{id}/edit(id=${medicine.id})}" th:text="#{Edit}" class="btn btn-default">Edit</a>
+                <a th:href="@{/medicines/{id}/delete(id=${medicine.id})}" th:text="#{eliminar}" class="btn btn-default">Delete</a>
+             </td>
           </tr>
         </tbody>
     </table>

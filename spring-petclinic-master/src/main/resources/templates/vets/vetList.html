@@ -15,6 +15,7 @@
          <th style="width: 120px" th:text="#{Telephone}">Telephone</th>
             <th style="width: 120px" th:text="#{inicioTurno}">horario</th>
             <th style="width: 120px" th:text="#{finTurno}">horario</th>
+            <th></th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,10 @@
       <td  th:text="${vet.telephone}"></td>    
         <td  th:text="${vet.horario}"></td>
          <td  th:text="${vet.hora_fin}"></td>
+         <td>
+            <a th:href="@{/vets/{id}/edit(id=${vet.id})}" th:text="#{Edit}" class="btn btn-default">Edit Vet</a>
+            <a th:href="@{/vets/{id}/delete(id=${vet.id})}" th:text="#{eliminar}" class="btn btn-default">Delete</a>
+         </td>
       </tr>
     </tbody>
   </table>
