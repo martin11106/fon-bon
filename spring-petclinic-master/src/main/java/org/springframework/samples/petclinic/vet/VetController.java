@@ -66,6 +66,11 @@ class VetController {
             return "redirect:/vets/" + vet.getId();
         }
     }
+    @GetMapping("/vets/find")
+    public String initBuscarForm(Map<String, Object> model) {
+        model.put("vet", new Vet());
+        return "vets/findvets";
+    }
     
     @GetMapping("/vets.html")
     public String showVetList(Vet vet, BindingResult result, Map<String, Object> model) {
