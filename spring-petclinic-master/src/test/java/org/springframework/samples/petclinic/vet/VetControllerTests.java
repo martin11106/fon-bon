@@ -27,6 +27,8 @@ import org.springframework.test.web.servlet.ResultActions;
 @WebMvcTest(VetController.class)
 public class VetControllerTests {
 
+    private static final int TEST_SPECIALTY_ID = 1;
+    
     @Autowired
     private MockMvc mockMvc;
 
@@ -39,15 +41,9 @@ public class VetControllerTests {
         james.setFirstName("James");
         james.setLastName("Carter");
         james.setId(1);
-        Vet helen = new Vet();
-        helen.setFirstName("Helen");
-        helen.setLastName("Leary");
-        helen.setId(2);
-        Specialty radiology = new Specialty();
-        radiology.setId(1);
-        radiology.setName("radiology");
-        helen.addSpecialty(radiology);
-        given(this.vets.findAll()).willReturn(Lists.newArrayList(james, helen));
+        given(this.vets.findAll()).willReturn(Lists.newArrayList(james));
+        given(this.vets.findSpecialties()).willReturn(Lists.newArrayList(james));
+        given(this.vets.findById(TEST_SPECIALTY_ID)).willReturn(new Specialty());
     }
 
     @Test

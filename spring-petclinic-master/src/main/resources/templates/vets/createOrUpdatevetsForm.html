@@ -17,7 +17,7 @@
         th:replace="~{fragments/inputField :: input (#{horarioinicio}, 'horario', 'text')}" />
            <input
         th:replace="~{fragments/inputField :: input (#{horafin}, 'hora_fin', 'text')}" />
-    <input th:replace="~{fragments/selectField :: select ('Especialidad', 'specialty', ${specialties})}" />
+    <input th:replace="~{fragments/selectField :: select (#{Specialties}, 'specialty', ${specialties})}" />
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
