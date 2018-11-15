@@ -16,14 +16,13 @@
 package org.springframework.samples.petclinic.vet;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.samples.petclinic.owner.Owner;
-import org.springframework.samples.petclinic.owner.Pet;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -64,4 +63,7 @@ public interface VetRepository extends Repository<Vet, Integer> {
     @Transactional(readOnly = true)
     int numero();
     
+    @Query("SELECT specialty FROM Specialty specialty ORDER BY specialty.name")
+    @Transactional(readOnly = true)
+    List<Specialty> findSpecialties();
 }

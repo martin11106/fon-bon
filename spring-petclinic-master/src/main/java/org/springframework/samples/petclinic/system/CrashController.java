@@ -45,6 +45,9 @@ class CrashController implements ErrorController{
             else if(statusCode == HttpStatus.BAD_REQUEST.value()) {
                 return "notFound";
             }
+            else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+                return "notFound";
+        }
         }
         return "error";
     }

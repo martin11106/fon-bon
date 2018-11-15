@@ -28,6 +28,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
@@ -58,6 +59,10 @@ public class Vet extends Person {
     @NotEmpty
     private String hora_fin;
 
+    @ManyToOne
+    @JoinColumn(name = "specialty_id")
+    private Specialty specialty;
+    
     public String getHora_fin() {
         return hora_fin;
     }
@@ -66,14 +71,6 @@ public class Vet extends Person {
         this.hora_fin = hora_fin;
     }
     
-    @Column(name = "specialties")
-    @NotEmpty
-    private String specialties2;
-
-    public String getSpecialties2() {
-        return specialties2;
-    }
-
     public String getHorario() {
         return horario;
     }
@@ -81,21 +78,19 @@ public class Vet extends Person {
     public void setHorario(String horario) {
         this.horario = horario;
     }
-
-    public void setSpecialties2(String specialties2) {
-        this.specialties2 = specialties2;
-    }
      
     @Column(name = "telephone")
     @NotEmpty
     @Digits(fraction = 0, integer = 10)
     private String telephone;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
-    private Set<Specialty> specialties;
+    public Specialty getSpecialty() {
+         return this.specialty;
+     }
 
-   
+    public void setSpecialty(Specialty specialty) {
+         this.specialty = specialty;
+    }
 
     public String getTelephone() {
         return this.telephone;
@@ -103,32 +98,6 @@ public class Vet extends Person {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-    protected Set<Specialty> getSpecialtiesInternal() {
-        if (this.specialties == null) {
-            this.specialties = new HashSet<>();
-        }
-        return this.specialties;
-    }
-
-    protected void setSpecialtiesInternal(Set<Specialty> specialties) {
-        this.specialties = specialties;
-    }
-
-    @XmlElement
-    public List<Specialty> getSpecialties() {
-        List<Specialty> sortedSpecs = new ArrayList<>(getSpecialtiesInternal());
-        PropertyComparator.sort(sortedSpecs,
-                new MutableSortDefinition("name", true, true));
-        return Collections.unmodifiableList(sortedSpecs);
-    }
-
-    public int getNrOfSpecialties() {
-        return getSpecialtiesInternal().size();
-    }
-
-    public void addSpecialty(Specialty specialty) {
-        getSpecialtiesInternal().add(specialty);
     }
 
 }

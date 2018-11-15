@@ -26,6 +26,7 @@ import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,6 +45,12 @@ class VetController {
     public VetController(VetRepository clinicService) {
         this.vets = clinicService;
     }
+    
+    @ModelAttribute("specialties")
+    public Collection<Specialty> populateSpecialties() {
+        return this.vets.findSpecialties();
+    }
+    
     @GetMapping("/vets/new")
     public String initCreationForm(Map<String, Object> model) {
     Vet vet=new Vet();
