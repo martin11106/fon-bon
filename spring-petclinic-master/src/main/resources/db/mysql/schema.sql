@@ -6,6 +6,12 @@ ALTER DATABASE petclinic
 
 USE petclinic;
 
+CREATE TABLE IF NOT EXISTS specialties (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(80),
+  INDEX(name)
+) engine=InnoDB;
+
 CREATE TABLE IF NOT EXISTS vets (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
@@ -14,15 +20,11 @@ CREATE TABLE IF NOT EXISTS vets (
   horario VARCHAR(100) NOT NULL,
   hora_fin VARCHAR(11) NOT NULL,
   specialty_id INT(4) UNSIGNED NOT NULL,
-  INDEX(last_name)
+  INDEX(last_name),
   FOREIGN KEY (specialty_id) REFERENCES specialties(id)
 ) engine=InnoDB;
 
-CREATE TABLE IF NOT EXISTS specialties (
-  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(80),
-  INDEX(name)
-) engine=InnoDB;
+
 
 CREATE TABLE IF NOT EXISTS types (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
