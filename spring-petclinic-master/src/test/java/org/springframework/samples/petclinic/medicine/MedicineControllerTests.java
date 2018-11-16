@@ -68,7 +68,7 @@ public class MedicineControllerTests {
     public void testProcessCreationFormSuccess() throws Exception{
         mockMvc.perform(post("/medicines/new")
                .param("name", "Paracetamol")
-               .param("active_ingredients", "Pseudoefedrina")
+               .param("activeIngredients", "Pseudoefedrina")
                .param("presentation", "Capsulas")
         )
                .andExpect(status().is3xxRedirection());
@@ -78,7 +78,7 @@ public class MedicineControllerTests {
     public void testProcessCreationFormHasErrors() throws Exception{
         mockMvc.perform(post("/medicines/new")
             .param("name", "Amoxicilina")
-            .param("active_ingredients", "Amoxicilina trihidrato")
+            .param("activeIngredients", "Amoxicilina trihidrato")
         )
             .andExpect(status().isOk())
             .andExpect(model().attributeHasErrors("medicine"))
@@ -106,7 +106,7 @@ public class MedicineControllerTests {
     public void testProcessFindFormByName() throws Exception {
         given(this.medicines.findByName(paracetamol.getName())).willReturn(Lists.newArrayList(paracetamol));
         mockMvc.perform(get("/medicines")
-                .param("name", "Amoxicilina")
+                .param("name", "Paracetamol")
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/medicines/" + TEST_MEDICINE_ID));
@@ -129,16 +129,16 @@ public class MedicineControllerTests {
             .andExpect(status().isOk())
             .andExpect(model().attributeExists("medicine"))
             .andExpect(model().attribute("medicine", hasProperty("name", is("Paracetamol"))))
-            .andExpect(model().attribute("medicne", hasProperty("active_ingredients", is("Paracetamol trihidrato"))))
-            .andExpect(model().attribute("medicine", hasProperty("presentation", is("Bebida"))))
-            .andExpect(view().name("medicines/createOrUpdateForm"));
+            .andExpect(model().attribute("medicine", hasProperty("activeIngredients", is("Pseudoefedrina"))))
+            .andExpect(model().attribute("medicine", hasProperty("presentation", is("Capsulas"))))
+            .andExpect(view().name("medicines/createOrUpdateMedicineForm"));
     }
     
     @Test
     public void testProcessUpdateMedicineFormSuccess() throws Exception{
         mockMvc.perform(post("/medicines/{medicineId}/edit", TEST_MEDICINE_ID)
                 .param("name", "Paracetamol")
-                .param("active_ingredients", "Paracetamol trihidrato")
+                .param("activeIngredients", "Paracetamol trihidrato")
                 .param("presentation", "Bebida")
         )
                 .andExpect(status().is3xxRedirection())
@@ -149,7 +149,7 @@ public class MedicineControllerTests {
     public void testProcessUpdateMedicineFormHasErrors() throws Exception{
         mockMvc.perform(post("/medicines/{medicineId}/edit", TEST_MEDICINE_ID)
             .param("name", "Amoxicilina")
-            .param("active_ingredients", "Amoxicilina trihidrato")
+            .param("activeIngredients", "Amoxicilina trihidrato")
         )
             .andExpect(status().isOk())
             .andExpect(model().attributeHasErrors("medicine"))
@@ -162,8 +162,8 @@ public class MedicineControllerTests {
         mockMvc.perform(get("/medicines/{medicineId}", TEST_MEDICINE_ID))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("medicine", hasProperty("name", is("Paracetamol"))))
-                .andExpect(model().attribute("medicine", hasProperty("active_ingredients", is("Paracetamol trihidrato"))))
-                .andExpect(model().attribute("medicine", hasProperty("presentation", is("Bebida"))))
+                .andExpect(model().attribute("medicine", hasProperty("activeIngredients", is("Pseudoefedrina"))))
+                .andExpect(model().attribute("medicine", hasProperty("presentation", is("Capsulas"))))
                 .andExpect(view().name("medicines/medicineDetails"));
     }
     
